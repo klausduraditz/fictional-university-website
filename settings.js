@@ -4,7 +4,7 @@
 // If you're using Local by Flywheel you will
 // want your settings to be similar to the examples below:
 
-exports.themeLocation = 'wp-content/themes/fictional-university';
+exports.themeLocation = './wp-content/themes/fictional-university/';
 exports.urlToPreview = 'http://fictional-university.local/';
 
 // Simply remove the two slashes at the front of those lines
