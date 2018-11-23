@@ -50,6 +50,7 @@
                         array(
                             'key' => 'related_programs',
                             'compare' => 'LIKE',
+                            // search for "ID" (quotations are important here)
                             'value' => '"' .  get_the_ID() . '"'
                         )
                     )
