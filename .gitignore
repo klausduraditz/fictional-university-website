@@ -20,6 +20,9 @@
 # app/wp-content/plugins/
 # !app/wp-content/plugins/advanced-custom-fields-pro/
 
+# ignore node modules folder
+node_modules/
+
 
 # Numerous always-ignore extensions
 *.diff
