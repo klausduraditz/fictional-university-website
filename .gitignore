@@ -26,6 +26,9 @@ node_modules/
 package-lock.json
 package.json
 
+# local by flywheel created file
+local-adminer-Sy08U6dYQ.php
+
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -55,3 +58,6 @@ nbproject
 .komodotools
 _notes
 dwsync.xml
+
+
+
