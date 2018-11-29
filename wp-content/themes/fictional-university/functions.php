@@ -13,6 +13,10 @@
     function university_features() {
         // Title Tag for Browser Title
         add_theme_support('title-tag');
+        add_theme_support('post-thumbnails');
+        add_image_size('professorLandscape', 400, 260, true); // thumbsize-name, width, length, crop (cropping center can be set via array)
+        add_image_size('professorPortrait', 480, 650, true);
+        add_image_size('pageBanner', 1500, 350, true);
 
         // // Register Menu Locations
         // register_nav_menu('headerMenuLocation', 'Header Menu Location');

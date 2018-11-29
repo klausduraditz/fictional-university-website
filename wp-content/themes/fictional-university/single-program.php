@@ -30,11 +30,56 @@
             <div class="generic-content"><?php the_content(); ?></div>
             
             <?php
-                // EVENT CUSTOM QUERY
+
+                // CUSTOM PROFESSORS QUERY
+                $relatedProfessors = new WP_Query(array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'professor',
+                    'orderby' => 'title',
+                    'order' => 'ASC',
+                    // show only dates that are in the future
+                    'meta_query' => array(
+                        array(
+                            'key' => 'related_programs',
+                            'compare' => 'LIKE',
+                            // search for "ID" (quotations are important here)
+                            'value' => '"' .  get_the_ID() . '"'
+                        )
+                    )
+                ));
+                
+                // Only output related professors section if there are any
+
+                if ($relatedProfessors->have_posts()) {
+                    echo '<hr class="section-break">';
+                    echo '<h2 class="headline headline--medium">' . get_the_title() . ' Profressors</h2>';
+                    
+                    echo '<ul class="professor-cards">';
+                    while($relatedProfessors->have_posts()) {
+                        $relatedProfessors->the_post(); ?>
+                        
+                        <li class="professor-card__list-item">
+                            <a class="professor-card" href="<?php the_permalink(); ?>">
+                                <img class="professor-card__image" src="<?php the_post_thumbnail_url('professorLandscape'); ?>" alt="">
+                                <span class="professor-card__name"><?php the_title(); ?></span>
+                            </a>
+                        </li>
+    
+                    <?php }
+                    echo '</ul>';
+                }
+
+                // reset global post object to default url-based query 
+                // -> custom queries are "hijacking" functions like the_title() or the_ID() and they need to be reset
+                // this reset needs to be done in between custom queries almost every time
+                wp_reset_postdata();
+
+
                 $today = date('Ymd');
 
+                // EVENT CUSTOM QUERY
                 $homepageEvents = new WP_Query(array(
-                    'posts_per_page' => -1,
+                    'posts_per_page' => 2,
                     'post_type' => 'event',
                     'meta_key' => 'event_date',
                     'orderby' => 'meta_value_num',
